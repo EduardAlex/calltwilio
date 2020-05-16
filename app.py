@@ -5,13 +5,19 @@ import os
 
 app = Flask(__name__)
 
+langs = {}
+with open("langs.txt", "r") as f:
+	for line in f.readlines():
+		p = line.split("/")
+		langs[p[0]] = [p[1],p[2],p[3]]
+
 @app.route("/")
 def index():
 	return redirect("/call")
 
 @app.route("/call")
 def callpage():
-	return render_template("call.html")
+	return render_template("call.html", langs = langs)
 
 @app.route("/call", methods=['POST'])
 def call():
@@ -21,7 +27,8 @@ def call():
 	number = request.form['number']
 	text = request.form['text']
 	twimlcall = VoiceResponse()
-	twimlcall.say(text, voice="Polly.Carmen", language="ro-RO")
+	language = request.form['language']
+	twimlcall.say(text, voice=langs[language][2], language=langs[language][3])
 	print(str(twimlcall))
 	call = client.calls.create(from_ = "+12055832852", to = number, twiml = str(twimlcall))
 	return redirect("/call")

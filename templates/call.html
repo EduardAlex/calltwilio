@@ -1,8 +1,13 @@
 <html>
 	<body><center>
 		<form method="post">
-			What to say:<input type="text" name="text"/><br/><br/>
-			Number to call:<input type="text" name="number"/><br/><br/>
+			What to say: <input type="text" name="text"/><br/><br/>
+			Number to call: <input type="text" name="number"/><br/><br/>
+			Text-to-speech language: <select name="language">
+										{% for lang in langs %}
+										<option value="{{lang}}"> {{langs[lang][0]}} </option>
+										{% endfor %}
+									</select><br/><br/>
 			<button type="submit">Call</button>
 		</form>
 	</center>
