@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 languages = ["romanian/Romanian/Polly.Carmen/ro-RO",
 	"english-us/English (US)/Polly.Salli/en-US",
-	"enlish-uk/English (UK)/Polli.Amy/en-GB",
+	"english-uk/English (UK)/Polli.Amy/en-GB",
 	"russian/Russian/Polli.Tatyana/ru-RU"]
 langs = {}
 #with open("langs.txt", "r") as f:
@@ -30,9 +30,9 @@ def call():
 	client = Client(sid, token)
 	number = request.form['number']
 	text = request.form['text']
-	twimlcall = VoiceResponse()
 	language = request.form['language']
-	twimlcall.say(text, voice=langs[language][2], language=langs[language][3])
+	twimlcall = VoiceResponse()
+	twimlcall.say(text, voice=langs[language][1], language=langs[language][2])
 	print(str(twimlcall))
 	call = client.calls.create(from_ = "+12055832852", to = number, twiml = str(twimlcall))
 	return redirect("/call")
