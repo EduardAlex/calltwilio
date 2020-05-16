@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, url_for, render_template
 from twilio.rest import Client
 from twilio.twiml.voice_response import VoiceResponse
+import os
 
 app = Flask(__name__)
 
@@ -14,7 +15,9 @@ def callpage():
 
 @app.route("/call", methods=['POST'])
 def call():
-	client = Client('AC4ba293b6b9d6b3f2ef3ec18141a4c60e','5f90e951a859d977ac89166a75041889')
+	sid = os.environ.get("SID_T")
+	token = os.environ.get("TOKEN_T")
+	client = Client(sid, token)
 	number = request.form['number']
 	text = request.form['text']
 	twimlcall = VoiceResponse()
