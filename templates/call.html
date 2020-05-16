@@ -3,11 +3,36 @@
 		<form method="post">
 		<table>
 		<tr>
-			<th> What to say: </th><th> <input type="text" name="text"/><br/><br/></th>
+			<th><table><tr><th><input type="radio" name="mp3orvoice" value="voice" />
+			</th><th>Say something:
+			</th><tr><th><br/><br/><center>or</center><br/></th></tr></tr><tr><th><input type="radio" name="mp3orvoice" value="mp3" />
+			</th><th>Link to audio file:
+			</th></tr></table></th><th>
+			<table>
+			<tr><th></th><th>
+			<input type="text" name="text"/>
+			</th></tr>
+			<tr><th>
+			<br/>
+			</th></tr>
+			<tr><th>
+			How many times to loop? <br/>
+			(in case of audio file)
+			</th><th>
+			<input type="number" name="loop" min="1" step="1">
+			</th></tr>
+			</table>
+			<br/><br/></th>
 		</tr>
+		<tr><th>
+		<br/><br/><br/>
+		</th></tr>
 		<tr>
 			<th> Number to call: </th><th> <input type="text" name="number"/><br/><br/></th>
 		</tr>
+		<tr><th>
+		<br/><br/><br/>
+		</th></tr>
 		<tr>
 			<th> Text-to-speech language: </th><th> <select name="language">
 										{% for lang in langs %}
@@ -15,9 +40,11 @@
 										{% endfor %}
 									</select><br/><br/></th>
 		</tr>
+		<tr><th>
+		<br/><br/><br/>
+		</th></tr>
 		</table>
-		<br/>
-		<br/>
+
 		<button type="submit">Call</button>
 		</form>
 	</center>

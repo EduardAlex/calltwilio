@@ -31,8 +31,12 @@ def call():
 	number = request.form['number']
 	text = request.form['text']
 	language = request.form['language']
+	loop = request.form['loop']
 	twimlcall = VoiceResponse()
-	twimlcall.say(text, voice=langs[language][1], language=langs[language][2])
+	if request.form['mp3orvoice'] == "voice":
+		twimlcall.say(text, voice=langs[language][1], language=langs[language][2])
+	else:
+		twimlcall.play(text, loop = loop)
 	print(str(twimlcall))
 	call = client.calls.create(from_ = "+12055832852", to = number, twiml = str(twimlcall))
 	return redirect("/call")
