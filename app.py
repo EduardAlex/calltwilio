@@ -5,11 +5,15 @@ import os
 
 app = Flask(__name__)
 
+languages = ["romanian/Romanian/Polly.Carmen/ro-RO",
+	"english-us/English (US)/Polly.Salli/en-US",
+	"enlish-uk/English (UK)/Polli.Amy/en-GB",
+	"russian/Russian/Polli.Tatyana/ru-RU"]
 langs = {}
-with open("langs.txt", "r") as f:
-	for line in f.readlines():
-		p = line.split("/")
-		langs[p[0]] = [p[1],p[2],p[3]]
+#with open("langs.txt", "r") as f:
+for line in languages:
+	p = line.split("/")
+	langs[p[0]] = [p[1],p[2],p[3]]
 
 @app.route("/")
 def index():
