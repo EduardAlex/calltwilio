@@ -21,7 +21,7 @@ def call():
 	number = request.form['number']
 	text = request.form['text']
 	twimlcall = VoiceResponse()
-	twimlcall.say(text)
+	twimlcall.say(text, voice="Polly.Carmen", language="ro-RO")
 	print(str(twimlcall))
 	call = client.calls.create(from_ = "+12055832852", to = number, twiml = str(twimlcall))
 	return redirect("/call")
