@@ -51,7 +51,9 @@ def call():
 @app.route("/switch", methods=['POST'])
 def switchc():
 	if request.form['password'] == switchpass:
-		on = (not on)
+		global on
+		on = not on
+	return "Nothing to see here..."
 
 if __name__ == '__main__':
 	app.run(debug = 1, host="0.0.0.0", port=80)
