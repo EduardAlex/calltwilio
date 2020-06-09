@@ -55,5 +55,12 @@ def switchc():
 		on = not on
 	return "Nothing to see here..."
 
+@app.route("/status")
+def status():
+	if on:
+		return "1"
+	else:
+		return "0"
+
 if __name__ == '__main__':
 	app.run(debug = 1, host="0.0.0.0", port=80)
